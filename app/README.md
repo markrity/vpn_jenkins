@@ -1,0 +1,1 @@
+### Simple nginx docker that serves index.html
