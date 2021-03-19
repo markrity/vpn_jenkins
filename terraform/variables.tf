@@ -16,6 +16,12 @@ variable "tag_name" {
   default     = "OpenVPN"
 }
 
+
+variable "jenkins_tag_name" {
+  description = "The name to tag AWS resources with"
+  default     = "Jenkins"
+}
+
 variable "cidr_block" {
   description = "The CIDR block range to use for the OpenVPN VPC"
   default     = "10.0.0.0/16"

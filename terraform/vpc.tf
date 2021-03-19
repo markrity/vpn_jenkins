@@ -24,7 +24,7 @@ resource "aws_subnet" "jenkins" {
   cidr_block = cidrsubnet(var.cidr_block, 8, 2)
   map_public_ip_on_launch = true
   tags = {
-    Name        = var.tag_name
+    Name        = var.jenkins_tag_name
     Provisioner = "Terraform"
   }
 }
@@ -46,11 +46,26 @@ resource "aws_route_table" "openvpn" {
     gateway_id = aws_internet_gateway.openvpn.id
   }
 }
+resource "aws_route_table" "jenkins" {
+  vpc_id = aws_vpc.openvpn.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.openvpn.id
+  }
+}
+
 
 resource "aws_route_table_association" "openvpn" {
   subnet_id      = aws_subnet.openvpn.id
   route_table_id = aws_route_table.openvpn.id
 }
+
+resource "aws_route_table_association" "jenkins" {
+  subnet_id      = aws_subnet.jenkins.id
+  route_table_id = aws_route_table.jenkins.id
+}
+
 
 resource "aws_security_group" "openvpn" {
   name        = "openvpn"
@@ -103,7 +118,7 @@ resource "aws_security_group" "jenkins_public" {
   vpc_id = aws_vpc.openvpn.id
 
   tags = {
-    Name        = var.tag_name
+    Name        = var.jenkins_tag_name
     Provisioner = "Terraform"
   }
 
