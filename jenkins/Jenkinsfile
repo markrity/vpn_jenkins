@@ -1,0 +1,38 @@
+pipeline { 
+    environment { 
+        registry = "markdavydov/app_repo" 
+        registryCredential = 'dockerhub-login' //docker hub credentials stored at Jenkins.
+        dockerImage = '' 
+    }
+    agent any 
+    stages { 
+        stage('Cloning our Git') { 
+            steps { 
+                //checkout.
+            }
+        } 
+        stage('Building image') { 
+            steps { 
+                script { 
+                    //build docker image. or maybe other way I will choose.
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                }
+            } 
+        }
+        stage('Push image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
+
+        stage('Deploy app') {
+            steps{
+                //some deploy steps.
+            }
+            }
+        }
+}

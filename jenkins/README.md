@@ -10,7 +10,6 @@ mkdir -p jenkins_home
 
 sudo chown -R 1000:1000 jenkins_home
 
-
 sudo amazon-linux-extras install docker -y
 sudo usermod -a -G docker ec2-user
 sudo service docker start
@@ -24,3 +23,9 @@ docker-compose up -d
 Access using `jenkins_ec2_instance_dns:8080`
 
 Get admin pw from `jenkins_home/secrets/initialAdminPassword` 
+
+
+Upcomming configuration:
+* Add docker hub credentials.
+* Add webhook for this repo to auto trigger build that uses Jenkinsfile.
+* Finish deployment process.
