@@ -36,6 +36,6 @@ At Pipeline choose from `Pipeline script from SCM` and configure it to be on `ma
 
 
 Upcomming configuration:
-* Add docker hub credentials.
-* Add webhook for this repo to auto trigger build that uses Jenkinsfile. (added in repo , need a successful trigger before polling starts working.)
-* Finish deployment process.
+[ ] Add docker hub credentials.
+[x] Add webhook for this repo to auto trigger build that uses Jenkinsfile. -> Works.
+[ ] Finish deployment process.
