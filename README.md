@@ -28,4 +28,3 @@ sudo brew services start openvpn
 sudo openvpn --config generated/ovpn-config/admin.ovpn 
 ```
 If you have issues using openvpn add to your path: `export PATH=$(brew --prefix openvpn)/sbin:$PATH`
-
