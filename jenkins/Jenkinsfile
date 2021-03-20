@@ -9,6 +9,7 @@ pipeline {
         stage('Cloning our Git') { 
             steps { 
                 //checkout.
+                echo 'Placeholder'
             }
         } 
         stage('Building image') { 
@@ -31,7 +32,7 @@ pipeline {
 
         stage('Deploy app') {
             steps{
-                //some deploy steps.
+                echo 'Placeholder'
             }
             }
         }
